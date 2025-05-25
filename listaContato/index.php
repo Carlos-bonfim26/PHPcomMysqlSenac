@@ -10,14 +10,19 @@ require_once "vendor/conexao.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My index</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 
-    <div class="container">
+    <div class="container mt-5">
+        <div class="container header">
+            <h2>Usuários cadastrados</h2>
+            <a href="formulario-criar.php" class="btn btn-primary">Cadastrar usuário</a>
+        </div>
         <?php
-        $sql = "SELECT * FROM PESSOA ORDER BY NomePessoa";
+        $sql = "SELECT * FROM PESSOA ";
         $resultado = $conexao->query($sql);
 
         if ($resultado->num_rows > 0) {
@@ -45,15 +50,15 @@ require_once "vendor/conexao.php";
                     <td>" . $linha['EmailPessoa'] . "</td>
                     <td>" . $linha['TelefonePessoa'] . "</td>" ?>
                     <td>
-                        <a href=''>Ver</a>
-                        <a href=''>Editar</a>
+                        <a href='usuario.php?id= <?= $linha['IdPessoa'];?>' class="btn btn-secondary">Ver</a>
+                        <a href='formulario-editar.php?id= <?= $linha['IdPessoa'];  ?>' class="btn btn-warning">Editar</a>
                         
-                        <a href='deletar.php? id= <?= $linha['IdPessoa']; ?> ' onclick="return confirm('tem certeza que deseja deletar?')">Excluir</a>
+                        <a href='deletar.php? id= <?= $linha['IdPessoa']; ?> ' onclick="return confirm('tem certeza que deseja deletar?')" class="btn btn-danger">Excluir</a>
                     </td>
                 </tr>
                   <?php  } ?>
 
-                    ?>
+                    
                 </tbody>
             </table>
         <?php } else {
@@ -67,6 +72,7 @@ require_once "vendor/conexao.php";
         }
 
         ?>
+       
     </div>
 
 
