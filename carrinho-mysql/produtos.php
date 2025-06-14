@@ -31,7 +31,8 @@ $resultado = $conexao->query($sql);
                 <li>
                     <?= $row['Nome_Produto'] ?> -
                     R$<?= number_format($row['Preco'], 2, ',', '.') ?>
-                    <a href="adicionar.php?id=  <?= $row['Id_User'] ?>">Add ao Carrinho</a>
+                    <a href="adicionar.php?id=<?=$row['Id_User'] ?>">Add ao Carrinho</a>
+                    <img width="100" src="../img/uploads/<?=$row['Imagem_Produto']?>" alt="">
                 </li>
         <?php
             }
@@ -39,6 +40,8 @@ $resultado = $conexao->query($sql);
             echo "<p>Nenhum produto encontrado</p>";
         }
         ?>
+
+        <a href="carrinho.php">ver carrinho</a>
     </ul>
 </body>
 
